@@ -1,5 +1,4 @@
 var app = angular.module('StarterApp', ['ngMaterial']);
-var id = 1;
 
 app.service('getValService', function($http) {
     this.getVal = function() {
@@ -14,16 +13,15 @@ app.service('delService', function($http) {
 
 app.controller('LoadValueController', function($scope, getValService,delService,$filter) {
     $scope.isSearching = false;
+    $scope.showHeader = true;
     $scope.loadData = function() {
-         $scope.isSearching = true;
+        $scope.isSearching = true;
         getValService.getVal().then(function(data,status) {
             $scope.values = data.data.data;
             var a = angular.fromJson(data);
-            console.log(a.data['data']);
-            console.log(status);
-
-             $scope.isSearching = false;
+            $scope.isSearching = false;
         });
+        $scope.showHeader = false;
     };
 
     $scope.delData =function(val){
@@ -36,5 +34,6 @@ app.controller('LoadValueController', function($scope, getValService,delService,
            $scope.loadData();
         });
          $scope.isSearching = false;
+         $scope.showHeader = false;
     };
 });

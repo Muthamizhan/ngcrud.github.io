@@ -3,12 +3,11 @@ var id = 1;
 
 app.service('getValService', function($http) {
     this.getVal = function() {
-        return $http.post('controller.php');
+        return $http.get('controller.php');
     };
 });
 app.service('delService', function($http) {
     this.delVal = function(id) {
-    	var id = 1;
         return $http.post('controller.php',id);
     };
 });
@@ -17,16 +16,24 @@ app.controller('LoadValueController', function($scope, getValService,delService,
     $scope.isSearching = false;
     $scope.loadData = function() {
          $scope.isSearching = true;
-        getValService.getVal().then(function(data) {
+        getValService.getVal().then(function(data,status) {
             $scope.values = data.data.data;
+            var a = angular.fromJson(data);
+            console.log(a.data['data']);
+            console.log(status);
+
              $scope.isSearching = false;
         });
     };
 
-    $scope.delData =function(id){
+    $scope.delData =function(val){
          $scope.isSearching = true;
-    	 delService.delVal(id).then(function(data) {
-           alert(id);
+         var id = {
+            "id" : val
+         };
+    	 delService.delVal(id).then(function(data,status) {
+           alert("Data deleted succesfully");
+           $scope.loadData();
         });
          $scope.isSearching = false;
     };

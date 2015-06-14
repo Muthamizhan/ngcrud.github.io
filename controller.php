@@ -2,24 +2,34 @@
 	require('model.php');
 	$model = new Model();
 	try{
-		if(isset($_POST)) {
-			if(isset($_POST['id'])) {
-				echo ('del');
-			} else {
-				$data = $model ->getData();
-
+		
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+				$data = file_get_contents("php://input");
+				$objData = json_decode($data);
+				$id=$objData->id;
+				$data = $model ->delData($id);
 				if(!$data) {
-				throw new Exception("Unable to process the request");
-			} else {
+					throw new Exception("Value Not Found");
+				} else {
 				
 				$result = array(
-								'status' => "success",
-								'data' => $data
+								'success' => "Data deleted successfully"
 							);
 				echo json_encode($result);
-			}
+				}				
+		} else {
+			$data = $model ->getData();
+			if(!$data) {
+				throw new Exception("Unable to process the request");
+			} else {
+			
+			$result = array(
+							'data' => $data
+						);
+			echo json_encode($result);
 			}
 		}
+				
 	}catch(Exception $ex) {
 		$result = array(
 				'status' => "fail",
@@ -29,5 +39,4 @@
 			);
 		echo json_encode($result);
 	}
-
 ?>

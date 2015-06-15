@@ -22,11 +22,7 @@
 			if(!$data) {
 				throw new Exception("Unable to process the request");
 			} else {
-			
-			$result = array(
-							'data' => $data
-						);
-			echo json_encode($result);
+	 			echo json_encode($data);
 			}
 		}
 				

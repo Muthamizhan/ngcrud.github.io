@@ -15,7 +15,8 @@ app.controller('LoadValueController', function($scope, getValService,$filter) {
     $scope.loadData = function() {
         $scope.isSearching = true;
         getValService.getVal().then(function(data,status) {
-            $scope.values = data.data.data;
+            console.log(data.data)
+            $scope.values = data.data;
             var a = angular.fromJson(data);
             $scope.isSearching = false;
         });

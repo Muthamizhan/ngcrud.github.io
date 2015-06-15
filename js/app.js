@@ -4,14 +4,12 @@ app.service('getValService', function($http) {
     this.getVal = function() {
         return $http.get('controller.php');
     };
-});
-app.service('delService', function($http) {
     this.delVal = function(id) {
         return $http.post('controller.php',id);
     };
 });
 
-app.controller('LoadValueController', function($scope, getValService,delService,$filter) {
+app.controller('LoadValueController', function($scope, getValService,$filter) {
     $scope.isSearching = false;
     $scope.showHeader = true;
     $scope.loadData = function() {
@@ -29,7 +27,7 @@ app.controller('LoadValueController', function($scope, getValService,delService,
          var id = {
             "id" : val
          };
-    	 delService.delVal(id).then(function(data,status) {
+    	 getValService.delVal(id).then(function(data,status) {
            alert("Data deleted succesfully");
            $scope.loadData();
         });

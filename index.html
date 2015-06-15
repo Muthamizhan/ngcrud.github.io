@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1" />
   </head>
   <body layout="column">
-    <md-toolbar layout="row">
+    <md-toolbar class="theme" layout="row">
       <h2>
         <span>CRUD APP</span>
       </h2>
@@ -15,11 +15,24 @@
     <md-content class="md-padding" ng-controller="LoadValueController">
      <div layout="row" layout-align="center center" ng-show="showHeader">
         <h2 class="md-title">Crud Application</h2>
-        <md-button class="md-raised md-primary" ng-click="loadData()"> Load Value</md-button> 
+        <md-button class="md-raised md-primary theme" ng-click="loadData()"> Load Value</md-button> 
       </div>
       <div layout="row" layout-align="center center">
         <md-progress-circular class="progress-bar" ng-if="isSearching" md-mode="indeterminate"></md-progress-circular>
       </div>
+      <div layout="column"  class="list-wrapper wrapper-postion" ng-hide="showHeader">
+        <md-whiteframe class="md-whiteframe-z3 whitefrme" layout layout-align="end center">
+            <div flex>
+              <h2 class="md-title">Name</h2>
+            </div>
+            <div flex>
+              <h3 class="md-title">Phone</h3>
+            </div>  
+              <div flex >
+                <h3 class="md-title">Delete</h3>
+            </div>
+        </md-whiteframe> 
+      </div> 
       <div layout="column"  class="list-wrapper" ng-repeat="val in values">
         <md-whiteframe class="md-whiteframe-z1 whitefrme" layout layout-align="end center">
             <div flex>

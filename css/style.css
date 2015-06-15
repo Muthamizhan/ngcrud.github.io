@@ -1,6 +1,10 @@
 .whitefrme{
 	text-align: center;
 }
+.theme.theme.theme{
+	background: #009688;
+	background-color: #009688 !important;
+}
 @media screen and (min-width: 1024px){
 	.list-wrapper{
 		width: 50%;

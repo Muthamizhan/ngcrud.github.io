@@ -5,51 +5,20 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="initial-scale=1" />
   </head>
-  <body layout="column">
+  <body layout="column" ng-controller="LoadValueController">
     <md-toolbar class="theme" layout="row">
-      <h2>
-        <span>CRUD APP</span>
-      </h2>
+      <a href="#/">
+        <h2>
+          <span>CRUD APP</span>
+        </h2>
+      </a>
     </md-toolbar>
-    <!-- LoadValue Controller -->
-    <md-content class="md-padding" ng-controller="LoadValueController">
-     <div layout="row" layout-align="center center" ng-show="showHeader">
-        <h2 class="md-title">Crud Application</h2>
-        <md-button class="md-raised md-primary theme" ng-click="loadData()"> Load Value</md-button> 
-      </div>
-      <div layout="row" layout-align="center center">
-        <md-progress-circular class="progress-bar" ng-if="isSearching" md-mode="indeterminate"></md-progress-circular>
-      </div>
-      <div layout="column"  class="list-wrapper wrapper-postion" ng-hide="showHeader">
-        <md-whiteframe class="md-whiteframe-z3 whitefrme" layout layout-align="end center">
-            <div flex>
-              <h2 class="md-title">Name</h2>
-            </div>
-            <div flex>
-              <h3 class="md-title">Phone</h3>
-            </div>  
-              <div flex >
-                <h3 class="md-title">Delete</h3>
-            </div>
-        </md-whiteframe> 
-      </div> 
-      <div layout="column"  class="list-wrapper" ng-repeat="val in values">
-        <md-whiteframe class="md-whiteframe-z1 whitefrme" layout layout-align="end center">
-            <div flex>
-              <h2 class="md-title">{{val.name}}</h2>
-            </div>
-            <div flex>
-              <h3 class="md-subhead">{{val.Phone}}</h3>
-            </div>  
-              <div flex >
-               <md-button class="md-warn md-fab md-mini" aria-label="Edit Contact" ng-click="delData(val.id)">X</md-button>
-            </div>
-        </md-whiteframe> 
-      </div>       
-  </md-content>
+    
+    <div ng-view></div>
     
     <!-- Angular Material Dependencies -->
     <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.js"></script>
     <script src="lib/angular-animate.min.js"></script>
     <script src="lib/angular-aria.min.js"></script>
     <script src="lib/angular-material.min.js"></script>

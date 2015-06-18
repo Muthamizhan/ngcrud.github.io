@@ -1,0 +1,48 @@
+<md-content class="md-padding">
+     <div layout="row" layout-align="center center" ng-show="showHeader">
+        <h2 class="md-title">Crud Application</h2>
+        <md-button class="md-raised md-primary theme" ng-click="loadData()"> Load Value</md-button> 
+      </div>
+      <div layout="row" layout-align="center center">
+        <md-progress-circular class="progress-bar" ng-if="isSearching" md-mode="indeterminate"></md-progress-circular>
+      </div>
+      <div layout="column"  class="list-wrapper wrapper-postion" ng-hide="showHeader">
+        <md-input-container class="md-icon-float" >
+          <!-- Use floating label instead of placeholder -->
+          <label>Search</label>
+          <input ng-model="query" type="text">
+        </md-input-container>
+        <md-whiteframe class="md-whiteframe-z3 whitefrme" layout layout-align="end center">
+            <div flex>
+              <h2 class="md-title">Name</h2>
+            </div>
+            <div flex>
+              <h3 class="md-title">Phone</h3>
+            </div>  
+            <div flex >
+                <h3 class="md-title">Edit</h3>
+            </div>
+            <div flex >
+                <h3 class="md-title">Delete</h3>
+            </div>
+        </md-whiteframe> 
+      </div> 
+      <div layout="column"  class="list-wrapper animate-repeat"" ng-repeat="val in values | filter:query" ng-animate=" 'animate' ">
+        <md-whiteframe class="md-whiteframe-z1 whitefrme" layout layout-align="end center">
+            <div flex>
+              <h2 class="md-title">{{val.name}}</h2>
+            </div>
+            <div flex>
+              <h3 class="md-subhead">{{val.Phone}}</h3>
+            </div> 
+            <div flex >
+            	<a href="#/edit">
+               		<md-button class="md-fab md-mini" aria-label="Edit Contact" ng-click="editData(val.id)">Edit</md-button>
+               	</a>
+            </div> 
+            <div flex >
+               <md-button class="md-warn md-fab md-mini" aria-label="Edit Contact" ng-click="delData(val.id)">X</md-button>
+            </div>
+        </md-whiteframe> 
+      </div>       
+  </md-content>

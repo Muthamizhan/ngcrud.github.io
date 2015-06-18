@@ -1,0 +1,19 @@
+<div layout="column"  class="list-wrapper">
+    <md-whiteframe class="md-whiteframe-z1 whitefrme" layout layout-align="end center">
+    	<div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Name</label>
+          <input ng-model="name" ng-required>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Phone</label>
+          <input ng-model="phone" ng-required>
+        </md-input-container>
+        <md-input-container flex>
+        	<a href="#/home">
+        	  <md-button class="md-primary" ng-click=(updateData(name,phone))>Update</md-button>
+          </a>
+        </md-input-container>
+      </div>
+    </md-whiteframe>
+</div>

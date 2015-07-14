@@ -1,5 +1,6 @@
 var app = angular.module('StarterApp', ['ngRoute','ngAnimate','ngMaterial']);
 
+/*Services to pass vvalue to back*/
 app.service('getValService', function($http) {
     this.getVal = function() {
         return $http.get('controller.php');
@@ -15,8 +16,9 @@ app.service('getValService', function($http) {
     };
 });
 
+/*App main Controller*/
 app.controller('LoadValueController', function($scope, getValService, $filter) {
-
+    /*default values*/
     $scope.name = '';
     $scope.phone = '';
     $scope.id = '';
@@ -26,12 +28,13 @@ app.controller('LoadValueController', function($scope, getValService, $filter) {
     $scope.loadData = function() {
         $scope.isSearching = true;
         getValService.getVal().then(function(data, status) {
-            console.log(data.data)
             $scope.values = data.data;
+            console.log($scope.values[3])
             $scope.isSearching = false;
         });
         $scope.showHeader = false;
     };
+
 
     $scope.delData = function(val) {
         $scope.isSearching = true;
@@ -69,7 +72,6 @@ app.controller('LoadValueController', function($scope, getValService, $filter) {
         "Phone" : phone,
         "edit" : 2
       };
-      console.log(name);
       getValService.updateVal(data).then(function(data, status) {
         alert("Update succesfully");
         $scope.loadData();
@@ -77,7 +79,7 @@ app.controller('LoadValueController', function($scope, getValService, $filter) {
   };
 });
 
-
+/*Page Routes*/
 app.config(function($routeProvider) {
     $routeProvider
         .when('/', {

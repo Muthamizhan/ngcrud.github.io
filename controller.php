@@ -9,7 +9,7 @@
 				$id=$objData->id;
 				$mode = $objData->edit;
 				
-				if ($mode == 2) {
+				if ($mode == 2) {						/* update data */
 					
 					$id = $objData->id;
 					$name = $objData->name;
@@ -20,7 +20,7 @@
 					} else {
 						echo json_encode("Data Update successfully ");
 					}
-				}else
+				}else    								/*to edit the data retrive from db*/
 				if ($mode == 1) {
 					$data = $model ->editData($id);
 					if(!$data) {
@@ -30,7 +30,7 @@
 					
 					echo json_encode($data);
 					}
-				}else
+				}else 									/*delete data*/
 				if ($mode == 0){
 					$data = $model ->delData($id);
 					if(!$data) {
@@ -55,7 +55,7 @@
 				}
 			} 
 		else {
-			echo "Error Processing your request";
+			echo json_encode("Error Processing your request");
 		}
 				
 	}catch(Exception $ex) {
